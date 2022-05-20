@@ -1,0 +1,17 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Удаление отдела {% endblock %}
+
+{% block a_dep %} class="curr" {% endblock %}
+
+{% block content %}
+<div class="tbl cen" style="margin-top: 20px;">
+    <div>
+    <p class="pbig" style="color: red; padding-right: 10px;">Вы действительно хотите удалить отдел: {{dep.title}}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input class="fbutt" type="submit" value="Удалить">
+    </form>
+    </div>
+</div>
+{% endblock %}

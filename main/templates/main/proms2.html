@@ -1,0 +1,46 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Поощрения {% endblock %}
+
+{% block a_prom %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;"></p>
+
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Номер приказа</th>
+        <th>Вид поощрения</th>
+        <th>Дата</th>
+        <th>Сотрудник</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for prom in proms %}
+    <tr>
+        <td>{{ prom.ordernum }}</td>
+        <td>{{ prom.ptype }}</td>
+        <td>{{ prom.pdate }}</td>
+        <td>{{ prom.employee }}</td>
+        <td><a class="butt_ed" href="{% url 'edit2prom' prom.pk %}">Изменить</a></td>
+        <td><a class="butt_del" href="{% url 'del2prom' prom.pk %}">Удалить</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td><a class="butt" href="{% url 'add2prom' %}">Добавить</a></p></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

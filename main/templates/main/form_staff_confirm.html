@@ -1,0 +1,19 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Удаление позиций {% endblock %}
+
+{% block a_staff %} class="curr" {% endblock %}
+
+{% block content %}
+<div class="tbl cen" style="margin-top: 20px;">
+    <div>
+    <p class="pbig" style="color: red; padding-right: 10px;">
+        Вы действительно хотите удалить позиции: 
+        {{staff.department.title}}, {{staff.post.title}}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input class="fbutt" type="submit" value="Удалить">
+    </form>
+    </div>
+</div>
+{% endblock %}

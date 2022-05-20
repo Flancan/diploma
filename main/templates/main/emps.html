@@ -1,0 +1,59 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Сотрудники {% endblock %}
+
+{% block a_emp %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;"></p>
+
+<div class="param_container" style="margin-left: 0;">
+    <form  method="post" action="{% url 'showdisms' %}" style="margin: 0px auto 0px auto;">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    <input type="submit" value="Показать уволенных" class="fbutt1">    
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+    
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Таб. номер</th>
+        <th>Имя</th>
+        <th>Отдел</th>
+        <th>Должность</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for emp in emps %}
+    <tr>
+        <td>{{ emp.pnumber }}</td>
+        <td>{{ emp.surname }} {{ emp.name }}</td>
+        <td>{{ emp.department.title }}</td>
+        <td>{{ emp.post.title }}</td>
+        <td><a class="butt_ed" href="{% url 'editemp' emp.pk %}">Изменить</a></td>
+        <td><a class="butt_del" href="{% url 'delemp' emp.pk %}">Удалить</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td><a class="butt" href="{% url 'addemp' %}">Добавить</a></p></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

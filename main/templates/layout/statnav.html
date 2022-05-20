@@ -1,0 +1,23 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Статистика {% endblock %}
+
+{% block a_stat %} class="curr" {% endblock %}
+
+{% block statnav %}
+
+<nav class="stat">
+    <a href="{% url 'showstatemp' %}" {% block a_stat_emp %}{% endblock %}>Прием</a>
+    <a href="{% url 'showstatdism' %}" {% block a_stat_dism %}{% endblock %}>Увольнения</a>
+    <a href="{% url 'showstatsex' %}" {% block a_stat_sex %}{% endblock %}>Пол</a>
+    
+    <a href="{% url 'showstatedu' %}" {% block a_stat_edu %}{% endblock %}>Образование</a>
+    <a href="{% url 'showstatage' %}" {% block a_stat_age %}{% endblock %}>Возраст</a>
+    <a href="{% url 'showstatsaldep' %}" {% block a_stat_saldep %}{% endblock %}>ЗП по отделам</a>
+    <a href="{% url 'showstatsalpos' %}" {% block a_stat_salpos %}{% endblock %}>ЗП по должностям</a>
+    <a href="{% url 'showstatpens' %}" {% block a_stat_pens %}{% endblock %}>Пенсионеры</a>
+    <a href="{% url 'showstatwtime' %}" {% block a_stat_wtime %}{% endblock %}>Стаж</a>
+    <a href="{% url 'showstatvac' %}" {% block a_stat_vac %}{% endblock %}>Отпуска</a>
+</nav>
+
+{% endblock %}

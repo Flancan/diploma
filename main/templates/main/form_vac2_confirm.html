@@ -1,0 +1,19 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Удаление документа {% endblock %}
+
+{% block a_vac %} class="curr" {% endblock %}
+
+{% block content %}
+<div class="tbl cen" style="margin-top: 20px;">
+    <div>
+    <p class="pbig" style="color: red; padding-right: 10px;">
+        Удалить документ: {{vac.vtype}}, {{vac.startdate}}, 
+        {{vac.employee}}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input class="fbutt" type="submit" value="Удалить">
+    </form>
+    </div>
+</div>
+{% endblock %}

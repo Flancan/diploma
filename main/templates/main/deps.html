@@ -1,0 +1,50 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Отдел {% endblock %}
+
+{% block a_dep %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;"></p>
+
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Отдел</th>
+        <th>Значимость</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for dep in deps %}
+    <tr>
+        <td>{{ dep.title }}</td>
+        <td style="text-align: center;">
+            {% if dep.imp %}
+                Ключевой
+            {% endif %}
+        </td>
+        <td></td>
+        <td></td>
+        <td><a class="butt_ed" href="{% url 'editdep' dep.pk %}">Изменить</a></td>
+        <td><a class="butt_del" href="{% url 'deldep' dep.pk %}">Удалить</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td><a class="butt" href="{% url 'adddep' %}">Добавить</a></p></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

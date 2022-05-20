@@ -1,0 +1,33 @@
+{% extends "layout/ananav.html" %}
+
+{% block a_ana_dism %} class="curr" {% endblock %}
+
+{% block content %}
+
+<p style="margin-top: 40px;" class="stat_caption">Возможные увольнения сотрудников</p>
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Таб. номер</th>
+        <th>Сотрудник</th>
+        <th>Отдел</th>
+        <th>Должность</th>
+        <th>Месяц</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for key, value in emps.items %}
+    <tr>
+        <td>{{ value.0 }}</td>
+        <td>{{ value.1 }}</td>
+        <td>{{ value.2 }}</td>
+        <td>{{ value.3 }}</td>
+        <td>{{ value.4 }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

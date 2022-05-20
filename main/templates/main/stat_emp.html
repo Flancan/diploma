@@ -1,0 +1,82 @@
+{% extends "layout/statnav.html" %}
+{% load static %}
+
+{% block title %} Прием на работу {% endblock %}
+
+{% block a_stat_emp %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;" class="stat_caption">
+    Прием на работу</p>
+    <div class="param_container">
+    <form method="post" style="margin: 0px auto 0px auto;">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>
+                    <label for="id_dep">Отдел:</label>
+                </th>
+                <td>
+                    <select name="dep" required id="id_dep">
+                    <option value="-1">-----</option>
+                    {% for dep in deps %}
+                        <option value="{{ dep.pk }}" 
+                            {% if dep.pk == c_dep %} selected {% endif %}>
+                            {{ dep.title }}</option>
+                    {% endfor %}                        
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Показать" class="fbutt1">    
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <script src="{% static 'main/chart.js' %}"></script>
+
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+   
+    
+    <script>
+        const CHART_COLORS = [
+        'rgb(20, 200, 20)',
+    ];
+
+        const labels = [
+            {% for ye in years %}
+                '{{ ye }}',
+            {% endfor %}
+        ];
+
+        const items = [ 
+            {% for emp in emps %}
+                '{{ emp }}',
+            {% endfor %}
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'Количество сотрудников',
+            backgroundColor: CHART_COLORS,
+            borderColor: CHART_COLORS,
+            data: items,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+    // Vertical bar chart
+    var ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, config);
+</script>
+
+{% endblock %}

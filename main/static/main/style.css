@@ -1,0 +1,255 @@
+div.tbl {
+    display: table;
+}
+
+div.tbl > div {
+    display: table-row;
+}
+
+div.tbl > div > * {
+    display: table-cell;
+    padding: 0px 0px 3px 12px;
+}
+
+.cen {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tbl p {
+    padding-left: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* -------------------- Шапка -------------------- */
+div.capt {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.capt p {
+    font-size: 48pt;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white;
+    background-color: rgb(108, 129, 186);
+    padding-top: 48pt;
+    padding-bottom: 24pt;
+    margin: 0px;
+}
+
+/* -------------------- Панель навигации -------------------- */
+nav {
+    font-size: 14pt;
+    display: flex;
+    justify-content: space-between;
+    min-width: 400px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+
+nav a {
+    font-size: 20pt;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    margin: 10px 0px;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px 10px;
+    border: none;
+    color: black;
+}
+
+nav a.curr {
+    color: rgb(80, 15, 231);
+}
+
+nav a#space-item {
+    flex-grow: 1;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* -------------------- Панель навигации (статистика) -------------------- */
+nav.stat {
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+    min-width: 400px;
+    margin: 0 auto;
+    border-bottom: none;
+}
+
+nav.stat a {
+    font-size: 14pt;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    margin: 10px 0px;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px 10px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+}
+
+nav.stat a.curr {
+    color: white;
+    background-color: rgb(43, 54, 86);;
+}
+
+/* -------------------- Таблица с данными -------------------- */
+table.dtbl {
+    border: none;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+table.dtbl thead th {
+    padding-bottom: 12px;
+}
+
+table.dtbl tbody tr:nth-child(even) {
+    background-color: rgb(216, 224, 245);
+}
+
+table.dtbl th {
+    font-size: 24pt;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2px 5mm 2px 5mm;
+}
+
+table.dtbl td {
+    font-size: 20pt;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 5mm 4px 5mm;
+}
+
+table.dtbl td.cent {
+    text-align: center;
+}
+
+table.dtbl a.butt {
+    display: block;
+    border: thin solid black;
+    border-radius: 8px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16pt;
+    font-weight: 400;
+    text-align: center;
+    max-width: fit-content;
+    color: white;
+    background-color: rgb(43, 54, 86);
+    margin-top: 20px;
+}
+
+table.dtbl a.butt_ed {
+    display: block;
+    border: none;
+    padding: 2px;
+    text-decoration: none;
+    font-size: 14pt;
+    font-weight: 400;
+    text-align: center;
+    max-width: 120px;
+    color: rgb(72, 10, 235);
+}
+
+table.dtbl a.butt_del {
+    display: block;
+    border: none;
+    padding: 2px;
+    text-decoration: none;
+    font-size: 14pt;
+    font-weight: 400;
+    text-align: center;
+    max-width: 120px;
+    color: red;
+}
+
+/* -------------------- Формы -------------------- */
+form.inp {
+    margin-left: auto;
+    margin-right: auto;
+    border: thin solid black;
+    border-radius: 10px;
+    padding: 20px 20px 0px 20px;
+    max-width: fit-content;
+    background-color: rgb(78, 100, 160);
+}
+
+table label, table input, table select {
+    font-size: 16pt;
+}
+
+.errorlist {
+    font-size: 16pt;
+    color: rgb(109, 3, 3);
+}
+
+.fbutt {
+    border: thin solid black;
+    border-radius: 8px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16pt;
+    font-weight: 400;
+    text-align: center;
+    max-width: fit-content;
+    color: white;
+    background-color: rgb(43, 54, 86);
+    margin-top: 20px;
+}
+
+.pbig {
+    font-size: 18pt;
+}
+
+.stat_caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24pt;
+    font-weight: 700;
+    text-align: center;
+}
+
+.circle_container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    max-height: 600px;
+}
+
+.param_container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+    margin-bottom: 20px;
+}
+
+.fbutt1 {
+    border: thin solid black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 400;
+    text-align: center;
+    max-width: fit-content;
+    color: white;
+    background-color: rgb(43, 54, 86);
+}

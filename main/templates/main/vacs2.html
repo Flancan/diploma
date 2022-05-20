@@ -1,0 +1,46 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Отпуска {% endblock %}
+
+{% block a_vac %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;"></p>
+
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Номер приказа</th>
+        <th>Начало</th>
+        <th>Продолжительность</th>
+        <th>Сотрудник</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for vac in vacs %}
+    <tr>
+        <td>{{ vac.ordernum }}</td>
+        <td>{{ vac.startdate }}</td>
+        <td style="text-align: center;">{{ vac.duration }}</td>
+        <td>{{ vac.employee }}</td>
+        <td><a class="butt_ed" href="{% url 'edit2vac' vac.pk %}">Изменить</a></td>
+        <td><a class="butt_del" href="{% url 'del2vac' vac.pk %}">Удалить</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td><a class="butt" href="{% url 'add2vac' %}">Добавить</a></p></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

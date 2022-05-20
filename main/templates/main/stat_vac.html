@@ -1,0 +1,99 @@
+{% extends "layout/statnav.html" %}
+{% load static %}
+
+{% block title %} Отпуска {% endblock %}
+
+{% block a_stat_vac %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;" class="stat_caption">
+    Отпуска по месяцам</p>
+    <div class="param_container">
+    <form method="post" style="margin: 0px auto 0px auto;">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>
+                    <label for="id_year">Год:</label>
+                </th>
+                <td>
+                    <select name="year" required id="id_year">
+                    {% for ye in years %}
+                        <option value="{{ ye }}" 
+                            {% if ye == year %} selected {% endif %}>
+                            {{ ye }}</option>
+                    {% endfor %}                        
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Показать" class="fbutt1">    
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <script src="{% static 'main/chart.js' %}"></script>
+
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+   
+    
+    <script>
+        const CHART_COLORS = [
+        'rgb(120, 174, 200)',
+    ];
+
+        const labels = [
+            'янв',
+            'фев',
+            'мар',
+            'апр',
+            'май',
+            'июн',
+            'июл',
+            'авг',
+            'сен',
+            'окт',
+            'ноя',
+            'дек',
+        ];
+
+        const items = [ 
+            {{ vacs.0 }}, 
+            {{ vacs.1 }},
+            {{ vacs.2 }},
+            {{ vacs.3 }},
+            {{ vacs.4 }},
+            {{ vacs.5 }},
+            {{ vacs.6 }},
+            {{ vacs.7 }},
+            {{ vacs.8 }},
+            {{ vacs.9 }},
+            {{ vacs.10 }},
+            {{ vacs.11 }},
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'Количество отпусков',
+            backgroundColor: CHART_COLORS,
+            borderColor: CHART_COLORS,
+            data: items,
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+
+    // Vertical bar chart
+    var ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, config);
+</script>
+
+{% endblock %}

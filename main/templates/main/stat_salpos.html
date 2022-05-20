@@ -1,0 +1,93 @@
+{% extends "layout/statnav.html" %}
+{% load static %}
+
+{% block title %} Зарплата по должностям {% endblock %}
+
+{% block a_stat_salpos %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;" class="stat_caption">
+    Средняя зарплата по должностям</p>
+
+    <div class="param_container">
+        <form method="post" style="margin: 0px auto 0px auto;">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>
+                        <label for="id_dep">Отдел:</label>
+                    </th>
+                    <td>
+                        <select name="dep" required id="id_dep">
+                        <option value="-1">-----</option>
+                        {% for dep in deps %}
+                            <option value="{{ dep.pk }}" 
+                                {% if dep.pk == c_dep %} selected {% endif %}>
+                                {{ dep.title }}</option>
+                        {% endfor %}                        
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="Показать" class="fbutt1">    
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
+    <script src="{% static 'main/chart.js' %}"></script>
+
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+   
+    
+    <script>
+        const CHART_COLORS = [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)',
+    ];
+
+        const labels = [
+            {% for post in posts %}
+                '{{ post.title }}',
+            {% endfor %}
+        ];
+
+        const items = [ 
+            {% for post in posts %}
+                {% if post.ave %}
+                    '{{ post.ave | floatformat:0 }}',
+                {% else %}
+                    '0',
+                {% endif %}
+            {% endfor %}
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'Зарплата',
+            backgroundColor: CHART_COLORS,
+            borderColor: CHART_COLORS,
+            data: items,
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+
+    // Vertical bar chart
+    var ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, config);
+</script>
+
+{% endblock %}

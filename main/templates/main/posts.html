@@ -1,0 +1,45 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Новая должность {% endblock %}
+
+{% block a_post %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;"></p>
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Должность</th>
+        <th>Мин. оклад</th>
+        <th>Макс. оклад</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for post in posts %}
+    <tr>
+        <td>{{ post.title }}</td>
+        <td class="cent">{{ post.salarymin }}</td>
+        <td class="cent">{{ post.salarymax }}</td>
+        <td></td>
+        <td><a class="butt_ed" href="{% url 'editpost' post.pk %}">Изменить</a></td>
+        <td><a class="butt_del" href="{% url 'delpost' post.pk %}">Удалить</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td><a class="butt" href="{% url 'addpost' %}">Добавить</a></p></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tfoot>
+</table>
+{% endblock %}

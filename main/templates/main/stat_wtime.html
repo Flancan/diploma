@@ -1,0 +1,33 @@
+{% extends "layout/statnav.html" %}
+
+{% block title %} Ветераны {% endblock %}
+
+{% block a_stat_wtime %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;" class="stat_caption">
+    Стаж работы сотрудников, лет: {{ stage }} </p>
+
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Таб. номер</th>
+        <th>ФИО</th>
+        <th>Должность</th>
+        <th>Отдел</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for emp in emps %}
+    <tr>
+        <td>{{ emp.pnumber }}</td>
+        <td>{{ emp }}</td>
+        <td>{{ emp.post.title }}</td>
+        <td>{{ emp.department.title }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}

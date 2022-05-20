@@ -1,0 +1,19 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Приказ {% endblock %}
+
+{% block a_emp %} class="curr" {% endblock %}
+
+{% block content %}
+<p class="pbig">Сотрудник {{ emp.surname }} {{ emp.name }}</p>
+<p class="pbig">Приказы о поощрении</p>
+<form method="post" class="inp" style="margin-top: 20px;">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+        <p style="text-align: right;">
+            <input class="fbutt" type="submit" value="{{button_label}}">
+        </p>
+</form>
+{% endblock %}

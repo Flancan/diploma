@@ -1,0 +1,82 @@
+{% extends "layout/statnav.html" %}
+{% load static %}
+
+{% block title %} Мужчины и женщины {% endblock %}
+
+{% block a_stat_sex %} class="curr" {% endblock %}
+
+{% block content %}
+<p style="margin-top: 40px;" class="stat_caption">
+    Соотношение мужчин и женщин</p>
+    <div class="param_container">
+    <form method="post" style="margin: 0px auto 0px auto;">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>
+                    <label for="id_year">Год:</label>
+                </th>
+                <td>
+                    <select name="year" required id="id_year">
+                    {% for ye in years %}
+                        <option value="{{ ye }}" 
+                            {% if ye == year %} selected {% endif %}>
+                            {{ ye }}</option>
+                    {% endfor %}                        
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Показать" class="fbutt1">    
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <script src="{% static 'main/chart.js' %}"></script>
+
+    <div class="circle_container">
+        <canvas id="myChart"></canvas>
+    </div>
+   
+    
+    <script>
+        const CHART_COLORS = [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)',
+    ];
+
+        const labels = [
+            'Мужчины',
+            'Женщины',
+        ];
+
+        const items = [ {{ m }}, {{ f }} ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'My First dataset',
+            backgroundColor: CHART_COLORS,
+            // borderColor: 'rgb(255, 99, 132)',
+            data: items,
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: data,
+            options: {}
+        };
+
+    // Vertical bar chart
+    var ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, config);
+</script>
+
+{% endblock %}

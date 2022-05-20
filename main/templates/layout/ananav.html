@@ -1,0 +1,14 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Аналитика {% endblock %}
+
+{% block a_ana %} class="curr" {% endblock %}
+
+{% block ananav %}
+
+<nav class="stat">
+    <a href="{% url 'showanaexp' %}" {% block a_ana_exp %}{% endblock %}>Расходы</a>
+    <a href="{% url 'showanadism' %}" {% block a_ana_dism %}{% endblock %}>Увольнения</a>   
+</nav>
+
+{% endblock %}

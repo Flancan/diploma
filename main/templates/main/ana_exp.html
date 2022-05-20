@@ -1,0 +1,100 @@
+{% extends "layout/ananav.html" %}
+{% load static %}
+
+{% block a_ana_exp %} class="curr" {% endblock %}
+
+{% block content %}
+
+<p style="margin-top: 40px;" class="stat_caption">Прогноз расходов на следующий год</p>
+
+<script src="{% static 'main/chart.js' %}"></script>
+
+<div class="circle_container">
+    <canvas id="myChart"></canvas>
+</div>
+
+<p style="margin-top: 60px;" class="stat_caption"></p>
+
+<table class="dtbl">
+    <thead>
+    <tr>
+        <th>Отдел</th>
+        <th>Средняя ЗП</th>
+        <th>Прогноз ЗП</th>
+        <th>Изменение, %</th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+{% for key, value in deps.items %}
+    <tr>
+        <td>{{ key }}</td>
+        <td style="padding-left: 8%;">{{ value.0 | floatformat:0 }}</td>
+        <td style="padding-left: 8%;">{{ value.1 | floatformat:0 }}</td>
+        <td style="text-align: center;">{{ value.2 | floatformat:0 }}
+            {% if value.2 > 0 %}
+                <img src="{% static 'main/red-up.png' %}" alt="123" height="18mm">
+            {% else %}
+                <img src="{% static 'main/green-dn.png' %}" alt="123" height="18mm">  
+            {% endif %}
+        </td>
+        <td></td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+
+{% if flag %}
+<p class="stat_caption" style="font-size: 14pt;">
+    Расходы на неключевые отделы {{ depart }} стали слишком велики, стоит детальнее 
+    рассмотреть этот вопрос.
+</p>
+{% endif %}
+
+<script>
+    const CHART_COLORS = [
+    'rgb(255, 99, 132)',
+    'rgb(255, 159, 64)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(54, 162, 235)',
+    'rgb(153, 102, 255)',
+    'rgb(201, 203, 207)',
+    ];
+
+    const labels = [
+        {% for key, value in deps.items %}
+            '{{ key }}',
+        {% endfor %}
+    ];
+
+    const items = [ 
+        {% for key, value in deps.items %}
+            '{{ value.1 | floatformat:0 }}',
+        {% endfor %}
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+        label: 'Количество сотрудников',
+        backgroundColor: CHART_COLORS,
+        // borderColor: CHART_COLORS,
+        data: items,
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {}
+    };
+
+// Vertical bar chart
+var ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, config);
+</script>
+
+{% endblock %}
